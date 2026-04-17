@@ -1,0 +1,22 @@
+{
+  "testimonials": [
+    {
+      "text": "As an intern at Finest Coder, I got exposure to the dart and design pattern concepts. It’s a nice place to learn and work with flutter, which has helped me strengthen my mobile and cross platform development skills.",
+      "name": "Krisbalan S",
+      "role": "Flutter Developer",
+      "avatar": "/avatar1.png"
+    },
+    {
+      "text": "The experience is shaping me into a more confident and capable developer with real-world exposure.",
+      "name": "Krisbalan S",
+      "role": "Flutter Developer",
+      "avatar": "/avatar2.jpg"
+    },
+    {
+      "text": "Great mentorship and hands-on projects helped me gain strong practical knowledge.",
+      "name": "Krisbalan S",
+      "role": "Flutter Developer",
+      "avatar": "/avatar3.jpeg"
+    }
+  ]
+}

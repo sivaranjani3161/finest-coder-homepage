@@ -1,0 +1,15 @@
+{
+  "logo": "/logo.png",
+  "links": [
+    { "label": "Home", "href": "/", "active": true },
+    { "label": "About Us", "href": "/about" },
+    { "label": "Courses", "href": "/courses" },
+    { "label": "Gallery", "href": "/gallery" },
+    { "label": "Blogs", "href": "/blogs" },
+    { "label": "Contact Us", "href": "/contact" }
+  ],
+  "cta": {
+    "label": "Join Us Now!",
+    "href": "/join"
+  }
+}
