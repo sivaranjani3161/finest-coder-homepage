@@ -1,23 +1,26 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import testimonialsData from "@/app/data/testimonials.json";
 
 export default function Testimonials() {
   const items = testimonialsData.testimonials;
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false); // ✅ NEW
+  const [paused, setPaused] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (paused) return; // ✅ stop when paused
+    if (paused) return;
 
-    const interval = setInterval(() => {
+    timeoutRef.current = setTimeout(() => {
       setActive((prev) => (prev + 1) % items.length);
-    }, 2000);
+    }, 2500);
 
-    return () => clearInterval(interval);
-  }, [items.length, paused]); // ✅ include paused
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [active, paused, items.length]);
 
   const getPosition = (index: number) => {
     const diff = (index - active + items.length) % items.length;
@@ -29,97 +32,93 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="w-full bg-[#0FA4AF] py-[80px] relative overflow-hidden">
+    <section className="w-full bg-[#0FA4AF] py-[50px] md:py-[80px] relative overflow-hidden px-4">
 
-      <div className="absolute left-[-120px] top-[220px] w-[520px] h-[450px] bg-white/10 rounded-full" />
-      <div className="absolute left-[80px] bottom-[-200px] w-[450px] h-[450px] bg-white/10 rounded-full" />
+      <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center gap-[30px] md:gap-[40px]">
 
-      <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center gap-[40px]">
-
+        {/* LEFT TEXT */}
         <div className="md:w-[380px] text-white text-center md:text-left">
-          <h2 className="text-[32px] md:text-[48px] leading-[1.1] font-medium">
+          <h2 className="text-[26px] sm:text-[32px] md:text-[48px] leading-[1.1] font-medium">
             What Our <br />
             <span className="font-bold">Learners Say</span>
           </h2>
 
-          <p className="mt-[12px] text-[14px] md:text-[16px] opacity-90">
-            Hear directly from learners who achieved their goals and unlocked new opportunities with us.
+          <p className="mt-[10px] md:mt-[12px] text-[13px] sm:text-[14px] md:text-[16px] opacity-90">
+            Hear directly from learners who achieved their goals.
           </p>
         </div>
 
-        {/* ✅ ADD hover handlers HERE */}
-        <div
-          className="relative w-full max-w-[700px] h-[560px] flex items-center justify-center"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
+        {/* MOBILE SLIDER */}
+        <div className="relative w-full max-w-[700px] overflow-hidden md:hidden">
+          <div
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{
+              transform: `translateX(-${active * 100}%)`,
+            }}
+          >
+            {items.map((item, i) => (
+              <div key={i} className="w-full flex-shrink-0 px-2">
+                <Card item={item} />
+              </div>
+            ))}
+          </div>
+        </div>
 
+        {/* DESKTOP STACK */}
+        <div className="hidden md:block relative w-full max-w-[700px] h-[560px] flex items-center justify-center top-[180px]">
           {items.map((item, i) => {
             const pos = getPosition(i);
 
             return (
               <div
                 key={i}
+                onClick={() => setActive(i)}
                 className={`
-                  absolute w-[600px]
-                  transition-all duration-700 ease-in-out
+                  absolute w-full max-w-[600px] left-1/2 -translate-x-1/2
+                  transition-all duration-700 ease-in-out cursor-pointer
 
                   ${pos === "center" && "translate-y-0 scale-100 opacity-100 z-20"}
-                  ${pos === "top" && "-translate-y-[270px] scale-[0.88] opacity-50 z-10"}
-                  ${pos === "bottom" && "translate-y-[270px] scale-[0.88] opacity-50 z-10"}
-                  ${pos === "hidden" && "scale-[0.7] opacity-0 z-0"}
+                  ${pos === "top" && "-translate-y-[240px] scale-[0.88] opacity-50 z-10"}
+                  ${pos === "bottom" && "translate-y-[240px] scale-[0.88] opacity-50 z-10"}
+                  ${pos === "hidden" && "opacity-0 pointer-events-none"}
                 `}
               >
-                <div
-                  className={`
-                    w-full h-[210px]
-                    bg-[#F3F3F3]
-                    rounded-[12px]
-                    px-[24px] py-[18px]
-                    flex items-center justify-between
-                    ${pos === "center" ? "shadow-xl" : "shadow-md"}
-                  `}
-                >
-
-                  <div className="flex flex-col max-w-[440px]">
-                    <Image
-                      src="/quote.png"
-                      alt="quote"
-                      width={22}
-                      height={22}
-                      className="mb-[6px]"
-                    />
-
-                    <p className="text-[#3A3A3A] text-[14px] leading-[22px]">
-                      {item.text}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col items-center gap-[6px] min-w-[100px]">
-                    <Image
-                      src={item.avatar}
-                      alt=""
-                      width={44}
-                      height={44}
-                      className="rounded-full object-cover"
-                    />
-
-                    <p className="text-[12px] font-semibold text-[#2E2E2E] text-center">
-                      {item.name}
-                    </p>
-
-                    <p className="text-[11px] text-[#666] text-center">
-                      {item.role}
-                    </p>
-                  </div>
-
-                </div>
+                <Card item={item} />
               </div>
             );
           })}
-
         </div>
+
       </div>
     </section>
+  );
+}
+
+/* CARD */
+function Card({ item }: any) {
+  return (
+    <div className="
+      w-full min-h-[180px] sm:min-h-[200px] md:h-[210px]
+      bg-[#F3F3F3]
+      rounded-[12px]
+      px-[16px] sm:px-[20px] md:px-[24px]
+      py-[14px] sm:py-[16px] md:py-[18px]
+      flex flex-col sm:flex-row justify-between gap-[12px]
+    ">
+      <div className="flex flex-col justify-center max-w-full sm:max-w-[440px] h-[120px] sm:h-[130px] overflow-hidden">
+        <Image src="/quote.png" alt="quote" width={18} height={18} />
+        <p className="text-[13px] sm:text-[14px] lg:text-[16px] line-clamp-5">
+          {item.text}
+        </p>
+      </div>
+
+      <div className="flex flex-row sm:flex-col items-center gap-[10px]">
+        <Image src={item.avatar} alt="" width={40} height={40} className="rounded-full" />
+        <div className="text-center">
+          <p className="text-[12px] font-semibold">{item.name}</p>
+          <p className="text-[11px] text-[#666]">{item.role}</p>
+        </div>
+      </div>
+    </div>
   );
 }

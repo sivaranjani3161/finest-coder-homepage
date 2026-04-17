@@ -5,184 +5,139 @@ import heroData from "@/app/data/hero.json";
 
 export default function Hero() {
   return (
-    <section className="w-full bg-[#FDFDFD] pb-20 overflow-hidden pt-[10px]">
-      <div className="max-w-[1320px] mx-auto px-6">
+    <section className="w-full bg-[#FDFDFD] pb-16 md:pb-20 overflow-hidden pt-[10px]">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6">
 
-        <div className="relative bg-white/60 rounded-[20px] overflow-hidden pt-[80px] md:pt-[120px] pb-[140px] md:pb-[180px]">
-          <Image
-            src="/hero-bg.png"
-            alt="bg"
-            fill
-            priority
-            className="object-cover opacity-90"
-          />
+        {/* HERO TEXT */}
+        <div className="relative bg-white/60 rounded-[16px] md:rounded-[20px] overflow-hidden pt-[60px] md:pt-[120px] pb-[80px] md:pb-[180px] flex items-center justify-center">
+          
+        <Image
+  src="/hero-bg.png"
+  alt="bg"
+  fill
+  priority
+  sizes="100vw"
+  className="object-cover opacity-90"
+/>
 
-          <div className="relative z-10 flex flex-col items-center text-center">
-            <h1 className="max-w-[716px] text-[32px] leading-[42px] md:text-[54px] md:leading-[65px] font-medium text-[#2E2E2E]">
-  Start Coding{" "}
+          <div className="relative z-10 flex flex-col items-center text-center px-2 justify-center">
 
-  <span className="text-[#00B8C6] inline-flex items-baseline font-semibold">
-    T
+            <h1 className="max-w-[716px] text-[24px] leading-[32px] sm:text-[32px] sm:leading-[42px] md:text-[54px] md:leading-[65px] font-medium text-[#2E2E2E]">
+              Start Coding{" "}
+              <span className="text-[#00B8C6] inline-flex items-center font-semibold leading-none">
+                <span>T</span>
 
-    <Image
-      src="/od.png"   
-      alt="od"
-      width={60}      
-      height={60}
-      className="inline-block align-baseline -ml-[6px] mr-[2px] "
-    />
+                <Image
+                  src="/od.png"
+                  alt="od"
+                  width={40}
+                  height={40}
+                  className="
+                    inline-block
+                    ml-[-2px] mr-[1px] -translate-y-[2px]
+                    w-[20px] h-[20px]
 
-    ay.
-  </span>{" "}
+                    sm:ml-[-3px] sm:-translate-y-[2.5px]
+                    sm:w-[26px] sm:h-[26px]
 
-  Build What Matters{" "}
+                    md:ml-[-4px] md:-translate-y-[4px]
+                    md:w-[48px] md:h-[48px]
 
-  <span className="text-[#00B8C6] font-semibold">
-    Tomorrow.
-  </span>
-</h1>
+                    lg:ml-[-4px] lg:-translate-y-[3px]
+                    lg:w-[52px] lg:h-[45px]
+                  "
+                />
 
-            <p className="mt-[18px] max-w-[540px] text-[14px] leading-[20px] md:text-[18px] md:leading-[22px] text-[#464646] font-medium">
+                <span>ay.</span>
+              </span>{" "}
+              Build What Matters{" "}
+              <span className="text-[#00B8C6] font-semibold">
+                Tomorrow.
+              </span>
+            </h1>
+
+            <p className="mt-[12px] md:mt-[18px] max-w-[540px] text-[13px] sm:text-[14px] md:text-[18px] text-[#464646] font-medium">
               {heroData.subtitle}
             </p>
 
-            <button className="mt-[30px] md:mt-[44px] bg-[#00B8C6] text-white px-6 md:px-10 h-[44px] md:h-[52px] rounded-full text-[14px] md:text-[16px] font-semibold hover:opacity-90 transition">
-              {heroData.button}
-            </button>
+          <button className="mt-[20px] md:mt-[44px] bg-[#00B8C6] text-white px-5 sm:px-6 md:px-10 h-[40px] md:h-[52px] rounded-full text-[13px] sm:text-[14px] md:text-[16px] font-semibold cursor-pointer">
+  Learn More
+</button>
           </div>
         </div>
 
-        <div className="relative -mt-[130px] flex justify-center">
+        {/* IMAGE STACK */}
+        <div className="relative md:-mt-[130px] flex justify-center">
 
-          <div
-            className="relative hidden md:block h-[320px]"
-            style={{ width: "900px" }}
-          >
+          <div className="relative hidden md:flex justify-center h-[280px] lg:h-[320px] w-full max-w-[900px]">
 
-            <div
-  className="absolute z-10"
-  style={{
-    left: "0px",
-    top: "40px",
-    transform: "rotate(-12.7deg)",
-    width: "239px",
-    height: "270px",
-    border: "5px solid white",
-    borderRadius: "12px",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
-    overflow: "hidden",
-  }}
->
-<div className="w-full h-full overflow-hidden group">
-  <Image
-    src="/img1.png"
-    alt=""
-    fill
-    className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-  />
-</div>
-</div>
-           <div
-  className="absolute z-30"
-  style={{
-    left: "210px",
-    top: "20px",
-    transform: "rotate(0deg)",
-    width: "240px",
-    height: "270px",
-    border: "5px solid white",
-    borderRadius: "12px",
-    boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
-    overflow: "hidden",
-  }}
->
- <div className="w-full h-full overflow-hidden group">
-  <Image
-    src="/img2.png"
-    alt=""
-    fill
-    className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-  />
-</div>
-</div>
-          <div
-  className="absolute z-20"
-  style={{
-    left: "428px",
-    top: "30px",
-    transform: "rotate(9.84deg)",
-    width: "239px",
-    height: "270px",
-    border: "5px solid white",
-    borderRadius: "12px",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
-    overflow: "hidden",
-  }}
->
- <div className="w-full h-full overflow-hidden group">
-  <Image
-    src="/img3.png"
-    alt=""
-    fill
-    className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-  />
-</div>
-</div>
+            {/* ✅ CENTERED WRAPPER (FIX) */}
+            <div className="relative w-[520px] md:w-[600px] lg:w-[900px]">
 
-          <div
-  className="absolute z-10"
-  style={{
-    left: "640px",
-    top: "45px",
-    transform: "rotate(-5.06deg)",
-    width: "239px",
-    height: "270px",
-    border: "5px solid white",
-    borderRadius: "12px",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
-    overflow: "hidden",
-  }}
->
-  <div className="w-full h-full overflow-hidden group">
-  <Image
-    src="/img4.png"
-    alt=""
-    fill
-    className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-  />
-</div>
-</div>
+              {/* CARD 1 */}
+              <div className="absolute left-[5%] md:left-[8%] lg:left-[0%] top-[40px] rotate-[-12deg] group
+                w-[140px] h-[180px]
+                md:w-[150px] md:h-[190px]
+                lg:w-[239px] lg:h-[270px]
+                border-[4px] lg:border-[5px] border-white rounded-[12px] shadow-lg overflow-hidden">
+<Image
+  src="/img1.png"
+  alt=""
+  fill
+  sizes="(max-width: 768px) 140px, (max-width: 1024px) 150px, 239px"
+  className="object-cover transition-transform duration-300 group-hover:scale-105 active:scale-105"
+/>              </div>
 
-            <div
-              className="absolute bottom-[-20px] left-[50px] right-[50px] h-[50px] blur-3xl opacity-40 pointer-events-none"
-              style={{ background: "radial-gradient(ellipse, #00C8D7 0%, transparent 70%)" }}
-            />
+              {/* CARD 2 */}
+              <div className="absolute left-[28%] md:left-[30%] lg:left-[210px] top-[30px] group
+                w-[140px] h-[180px]
+                md:w-[150px] md:h-[190px]
+                lg:w-[240px] lg:h-[270px]
+                border-[4px] lg:border-[5px] border-white rounded-[12px] shadow-lg overflow-hidden z-10">
+<Image
+  src="/hero2.png"
+  alt=""
+  fill
+  sizes="(max-width: 768px) 140px, (max-width: 1024px) 150px, 240px"
+  className="object-cover transition-transform duration-300 group-hover:scale-105 active:scale-105"
+/>              </div>
+
+              {/* CARD 3 */}
+              <div className="absolute left-[48%] md:left-[52%] lg:left-[50%] top-[30px] rotate-[8deg] group
+                w-[140px] h-[180px]
+                md:w-[150px] md:h-[190px]
+                lg:w-[239px] lg:h-[270px]
+                border-[4px] lg:border-[5px] border-white rounded-[12px] shadow-lg overflow-hidden z-20">
+<Image
+  src="/img3.png"
+  alt=""
+  fill
+  sizes="(max-width: 768px) 140px, (max-width: 1024px) 150px, 239px"
+  className="object-cover transition-transform duration-300 group-hover:scale-105 active:scale-105"
+/>              </div>
+
+              {/* CARD 4 */}
+              <div className="absolute left-[70%] md:left-[74%] lg:left-[75%] top-[45px] rotate-[-5deg] group
+                w-[140px] h-[180px]
+                md:w-[150px] md:h-[190px]
+                lg:w-[239px] lg:h-[270px]
+                border-[4px] lg:border-[5px] border-white rounded-[12px] shadow-lg overflow-hidden">
+<Image
+  src="/img4.png"
+  alt=""
+  fill
+  sizes="(max-width: 768px) 140px, (max-width: 1024px) 150px, 239px"
+  className="object-cover transition-transform duration-300 group-hover:scale-105 active:scale-105"
+/>              </div>
+
+            </div>
+
+            {/* GLOW */}
+            <div className="absolute bottom-[-20px] left-[50px] right-[50px] h-[50px] blur-3xl opacity-40 bg-[radial-gradient(ellipse,#00C8D7_0%,transparent_70%)]" />
+
           </div>
-
-          <div className="md:hidden flex gap-4 overflow-x-auto px-4 scrollbar-hide pb-4">
-            {[
-              { src: "/img1.png", rotate: "-12.7deg" },
-              { src: "/img2.png", rotate: "0deg" },
-              { src: "/img3.png", rotate: "9.84deg" },
-              { src: "/img4.png", rotate: "-5.06deg" },
-            ].map((card, i) => (
-              <div
-                key={i}
-                className="min-w-[190px] flex-shrink-0"
-                style={{
-                  transform: `rotate(${card.rotate})`,
-                  border: "4px solid white",
-                  borderRadius: "12px",
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
-                  overflow: "hidden",
-                }}
-              >
-                <Image src={card.src} alt={`Coder ${i + 1}`} width={190} height={230} className="block" />
-              </div>
-            ))}
-          </div>
-
         </div>
+
       </div>
     </section>
   );

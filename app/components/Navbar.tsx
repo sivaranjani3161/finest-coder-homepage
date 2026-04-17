@@ -11,29 +11,37 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="w-full bg-white mb-[10px] mt-[10px]">
+    <header className="w-full bg-white mb-[8px] md:mb-[10px] mt-[8px] md:mt-[10px] sticky top-0 z-50">
 
-      <div className="max-w-[1200px] mx-auto flex items-center justify-between px-4 py-[14px]">
+      <div className="max-w-[1200px] mx-auto flex items-center justify-between px-4 py-[12px] md:py-[14px]">
 
-        <Image
-          src="/logo.png"
-          alt="logo"
-          width={180}
-          height={40}
-          priority
-        />
+<Image
+  src="/logo.png"
+  alt="logo"
+  width={0}
+  height={0}
+  sizes="(max-width: 768px) 140px, 180px"
+  priority
+  onClick={() => window.location.reload()}
+  className="
+    w-[140px] h-auto
+    md:w-[180px] md:h-auto
+    cursor-pointer
+  "
+/>
 
-        <nav className="hidden md:flex items-center gap-[28px]">
+        {/* DESKTOP NAV */}
+        <nav className="hidden md:flex items-center gap-[20px] lg:gap-[28px]">
 
           {data.links.map((link, index) => (
             <Link
               key={index}
               href={link.href}
               className={`
-                text-[16px] font-medium transition
+                text-[15px] lg:text-[16px] font-medium transition
                 ${
                   link.active
-                    ? "text-[#00B8C6] border border-[#00B8C6] px-[14px] py-[5px] rounded-full"
+                    ? "text-[#00B8C6] border border-[#00B8C6] px-[12px] lg:px-[14px] py-[4px] lg:py-[5px] rounded-full"
                     : "text-[#2E2E2E] hover:text-[#00B8C6]"
                 }
               `}
@@ -44,26 +52,35 @@ export default function Navbar() {
 
         </nav>
 
+        {/* CTA */}
         <Link
           href={data.cta.href}
-          className="hidden md:inline-flex items-center justify-center bg-[#00B8C6] text-white px-[20px] py-[8px] rounded-full text-[15px] font-medium"
+          className="hidden md:inline-flex items-center justify-center bg-[#00B8C6] text-white px-[16px] lg:px-[20px] py-[7px] lg:py-[8px] rounded-full text-[14px] lg:text-[15px] font-medium"
         >
           {data.cta.label}
         </Link>
 
-        <button
-          className="md:hidden flex flex-col gap-[4px]"
-          onClick={() => setOpen(!open)}
-        >
-          <span className="w-6 h-[2px] bg-[#2E2E2E]" />
-          <span className="w-6 h-[2px] bg-[#2E2E2E]" />
-          <span className="w-6 h-[2px] bg-[#2E2E2E]" />
-        </button>
+        {/* MOBILE MENU BUTTON */}
+       <button
+  className="md:hidden p-1"
+  onClick={() => setOpen(!open)}
+>
+  {open ? (
+    <span className="text-[24px] font-bold text-[#2E2E2E]">✕</span>
+  ) : (
+    <div className="flex flex-col gap-[4px]">
+      <span className="w-6 h-[2px] bg-[#2E2E2E]" />
+      <span className="w-6 h-[2px] bg-[#2E2E2E]" />
+      <span className="w-6 h-[2px] bg-[#2E2E2E]" />
+    </div>
+  )}
+</button>
 
       </div>
 
+      {/* MOBILE MENU */}
       {open && (
-        <div className="md:hidden px-6 pb-6 pt-2 space-y-[14px] bg-white border-t border-[#EAEAEA]">
+        <div className="md:hidden px-4 pb-5 pt-3 space-y-[12px] bg-white border-t border-[#EAEAEA] shadow-sm">
 
           {data.links.map((link, index) => (
             <Link
@@ -71,7 +88,7 @@ export default function Navbar() {
               href={link.href}
               onClick={() => setOpen(false)}
               className={`
-                block text-[16px] font-medium
+                block text-[15px] font-medium py-[6px]
                 ${
                   link.active
                     ? "text-[#00B8C6]"
@@ -85,7 +102,8 @@ export default function Navbar() {
 
           <Link
             href={data.cta.href}
-            className="block bg-[#00B8C6] text-white text-center py-[10px] rounded-full text-[15px] font-medium mt-[10px]"
+            onClick={() => setOpen(false)}
+            className="block bg-[#00B8C6] text-white text-center py-[10px] rounded-full text-[14px] font-medium mt-[8px]"
           >
             {data.cta.label}
           </Link>

@@ -62,31 +62,31 @@ export default function VideoTestimonials() {
   }, []);
 
   return (
-    <section className="py-[80px] bg-[#FDFDFD]">
+    <section className="py-[50px] md:py-[80px] bg-[#FDFDFD] px-4">
 
       <div className="text-center">
-        <h2 className="text-[32px] md:text-[54px] text-[#2E2E2E]">
+        <h2 className="text-[24px] sm:text-[32px] md:text-[54px] text-[#2E2E2E]">
           Checkout our <span className="font-semibold">latest testimonials</span>
         </h2>
 
-        <p className="mt-[12px] text-[14px] md:text-[16px] text-[#777]">
+        <p className="mt-[10px] md:mt-[12px] text-[13px] sm:text-[14px] md:text-[16px] text-[#777]">
           Explore stories, tips, and guides from our tech community.
         </p>
       </div>
 
-      <div className="mt-[40px] flex justify-center overflow-hidden">
+      <div className="mt-[30px] md:mt-[40px] flex justify-center overflow-hidden">
 
         <div className="w-full max-w-[1200px] overflow-hidden">
 
           <div
             ref={containerRef}
             className="
-              flex gap-[20px]
+              flex gap-[12px] sm:gap-[16px] md:gap-[20px]
               overflow-x-auto
               snap-x snap-mandatory
               scroll-smooth
               scrollbar-hide
-              px-4 md:px-[calc((1200px-460px)/2)]
+              px-2 sm:px-4 md:px-[calc((1200px-460px)/2)]
             "
           >
             {videos.map((video, i) => (
@@ -96,8 +96,8 @@ export default function VideoTestimonials() {
                   snap-center shrink-0 transition-all duration-300 ease-out
                   ${
                     i === active
-                      ? "w-[460px] h-[260px] scale-100 z-20"
-                      : "w-[360px] h-[210px] scale-[0.94] opacity-70"
+                      ? "w-[280px] h-[170px] sm:w-[340px] sm:h-[200px] md:w-[460px] md:h-[260px] scale-100 z-20"
+                      : "w-[240px] h-[150px] sm:w-[300px] sm:h-[180px] md:w-[360px] md:h-[210px] scale-[0.94] opacity-70"
                   }
                 `}
               >
@@ -108,9 +108,10 @@ export default function VideoTestimonials() {
                     className="w-full h-full object-cover"
                   />
 
+                  {/* PLAY BUTTON */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="
-                      w-[60px] h-[60px]
+                      w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] md:w-[60px] md:h-[60px]
                       bg-white/90
                       backdrop-blur-sm
                       rounded-full
@@ -118,7 +119,7 @@ export default function VideoTestimonials() {
                       shadow-md
                       transition group-hover:scale-110
                     ">
-                      <div className="w-0 h-0 border-l-[12px] border-l-[#00B8C6] border-y-[8px] border-y-transparent ml-[3px]" />
+                      <div className="w-0 h-0 border-l-[10px] sm:border-l-[12px] border-l-[#00B8C6] border-y-[6px] sm:border-y-[8px] border-y-transparent ml-[2px]" />
                     </div>
                   </div>
 
@@ -130,7 +131,8 @@ export default function VideoTestimonials() {
         </div>
       </div>
 
-      <div className="mt-[20px] flex justify-center gap-[8px]">
+      {/* DOTS */}
+      <div className="mt-[16px] md:mt-[20px] flex justify-center gap-[8px]">
         {videos.map((_, i) => (
           <div
             key={i}
@@ -138,7 +140,7 @@ export default function VideoTestimonials() {
               h-[6px] rounded-full transition-all
               ${
                 i === active
-                  ? "w-[28px] bg-[#00B8C6]"
+                  ? "w-[24px] md:w-[28px] bg-[#00B8C6]"
                   : "w-[6px] bg-gray-300"
               }
             `}

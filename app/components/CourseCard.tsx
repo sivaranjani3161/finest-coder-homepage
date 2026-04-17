@@ -16,34 +16,36 @@ export default function CourseCard({ title, desc, image, tags }: Props) {
   return (
     <div
       className={`
-        w-[384px] shrink-0
-        transition-all duration-300 ease-out
-        ${hover ? "-translate-y-[8px]" : ""}
-      `}
+  group
+  overflow-hidden
+  w-[260px] sm:w-[300px] md:w-[384px] shrink-0
+  transition-all duration-300 ease-out
+  will-change-transform
+  [transform:translateZ(0)]
+  ${hover ? "-translate-y-[8px]" : ""}
+`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
       {/* IMAGE */}
-      <div className="relative w-full h-[282px] rounded-t-[12px] overflow-hidden">
+      <div className="relative w-full h-[170px] sm:h-[240px] md:h-[282px] rounded-t-[12px] overflow-hidden">
 
         <Image
           src={image}
           alt=""
           fill
-          sizes="384px"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+          sizes="(max-width: 640px) 260px, (max-width: 768px) 300px, 384px"
+className="object-cover transition-transform duration-500 group-hover:scale-105 will-change-transform [transform:translateZ(0)]"        />
 
         {/* TAGS */}
-        <div className="absolute top-[16px] left-0 flex flex-col gap-[8px] z-10">
+        <div className="absolute top-[12px] left-0 flex flex-col gap-[6px] z-10">
           {tags.map((tag, i) => (
             <span
               key={i}
               className="
-                w-fit
                 bg-white text-[#2E2E2E]
-                text-[13px] font-medium
-                px-[16px] py-[6px]
+                text-[11px]
+                px-[12px] py-[4px]
                 rounded-r-full
                 border-b-[3px] border-[#00B8C6]
                 shadow-sm
@@ -54,45 +56,37 @@ export default function CourseCard({ title, desc, image, tags }: Props) {
           ))}
         </div>
 
-        {/* BADGE */}
-        <Image
-          src="/badge.png"
-          alt="badge"
-          width={28}
-          height={28}
-          className="absolute top-[14px] right-[14px]"
-        />
+<Image
+  src="/badge.png"
+  alt="badge"
+  width={22}
+  height={22}
+  className="absolute top-[10px] right-[10px]"
+  style={{ width: "auto", height: "auto" }}
+/>
       </div>
 
       {/* CONTENT */}
       <div
         className={`
-          w-full min-h-[260px]
+          w-full min-h-[220px] md:min-h-[260px]
           border border-[#E6E6E6] border-t-0
           rounded-b-[12px]
-          px-[24px] py-[22px]
+          px-[16px] py-[18px]
           flex flex-col justify-between
           transition-all duration-300
 
           ${hover ? "bg-[#00B8C6]" : "bg-white"}
-
-          ${
-            hover
-              ? "shadow-[0_25px_60px_rgba(0,0,0,0.18)]"
-              : "shadow-[0_8px_20px_rgba(0,0,0,0.06)]"
-          }
         `}
       >
 
         {/* TEXT */}
-        <div className="flex flex-col gap-[10px]">
+        <div className="flex flex-col gap-[8px]">
 
           <h3
             className={`
-              text-[24px]
+              text-[18px] sm:text-[20px] md:text-[24px]
               font-semibold
-              leading-[1.2]
-              transition-colors duration-300
               ${hover ? "text-white" : "text-[#2E2E2E]"}
             `}
           >
@@ -101,10 +95,7 @@ export default function CourseCard({ title, desc, image, tags }: Props) {
 
           <p
             className={`
-              text-[16px]
-              font-medium
-              leading-[1.5]
-              transition-colors duration-300
+              text-[13px] sm:text-[14px] md:text-[16px]
               ${hover ? "text-white/90" : "text-[#464646]"}
             `}
           >
@@ -113,67 +104,73 @@ export default function CourseCard({ title, desc, image, tags }: Props) {
         </div>
 
         {/* ACTIONS */}
-        <div className="flex items-center justify-between mt-[12px]">
+        <div className="flex items-center gap-2 mt-[10px]">
 
-          {/* BUTTON */}
-          <button
-            className={`
-              w-[210px] h-[48px]
-              flex items-center justify-between
-              px-[24px]
-              rounded-full
-              transition-all duration-300
+      <button
+  className={`
+    flex-1 h-[40px]
+    flex items-center justify-between
+    px-[16px]
+    rounded-full
+    text-[13px] font-semibold
+    transition-all duration-300
 
-              ${
-                hover
-                  ? "bg-white text-black shadow-md"
-                  : "bg-[#00B8C6] text-white"
-              }
-            `}
-          >
-            <span className="text-[16px] font-semibold">
-              Enquire Now
-            </span>
+    /* NORMAL */
+    bg-[#00B8C6] text-white border border-transparent
 
-            <svg
-              width="24"
-              height="16"
-              viewBox="0 0 28 18"
-              fill="none"
-              className={`transition ${
-                hover ? "stroke-black" : "stroke-white"
-              }`}
-            >
+    /* DESKTOP HOVER */
+    group-hover:bg-white
+    group-hover:text-[#2E2E2E]
+    group-hover:border-[#BABABA]
+
+    /* MOBILE TOUCH FIX */
+    ${hover ? "!bg-white !text-[#2E2E2E] !border-[#BABABA]" : ""}
+  `}
+>
+            <span>Enquire Now</span>
+
+            <svg width="20" height="14" viewBox="0 0 28 18" fill="none">
               <path
                 d="M2 9h18M16 5l6 4-6 4"
                 strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                stroke="currentColor"
               />
             </svg>
           </button>
 
           {/* BOOKMARK */}
           <div
-            className={`
-              w-[38px] h-[38px]
+            className="
+              w-[32px] h-[32px]
               flex items-center justify-center
-              rounded-full border transition-all duration-300
-              ${hover ? "border-white bg-white/10" : "border-[#D9D9D9]"}
-            `}
+              rounded-full
+              transition-all duration-300
+
+              /* NORMAL */
+              bg-[#00B8C6]
+
+              /* HOVER */
+              group-hover:bg-white
+            "
           >
             <svg
               width="14"
               height="20"
               viewBox="0 0 24 24"
               fill="none"
-              className={`${hover ? "stroke-white" : "stroke-[#999]"}`}
+              className="
+                transition-all duration-300
+
+                /* NORMAL */
+                stroke-white
+
+                /* HOVER */
+                group-hover:stroke-[#00B8C6]
+              "
             >
               <path
                 d="M6 3h12v18l-6-4-6 4V3z"
                 strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
               />
             </svg>
           </div>

@@ -18,7 +18,6 @@ export default function CoursesSection() {
     requestAnimationFrame(() => {
       if (cards.length > 1) {
         const target = cards[1];
-
         const offset =
           target.offsetLeft -
           (el.offsetWidth / 2 - target.offsetWidth / 2);
@@ -55,66 +54,61 @@ export default function CoursesSection() {
     if (!el) return;
 
     el.scrollBy({
-      left: dir === "left" ? -400 : 400,
+      left: dir === "left" ? -el.offsetWidth * 0.8 : el.offsetWidth * 0.8,
       behavior: "smooth",
     });
   };
 
   return (
-    <section className="bg-[#FDFDFD] py-[40px] md:py-[80px]">
+    <section className="bg-[#FDFDFD] py-[40px] md:py-[80px] px-4">
 
-      <div className="text-center mb-[40px]">
-        <h2 className="text-[28px] md:text-[54px] text-[#2E2E2E] leading-[1.1]">
+      {/* TITLE */}
+      <div className="text-center mb-[30px] md:mb-[40px]">
+        <h2 className="text-[24px] sm:text-[28px] md:text-[54px] text-[#2E2E2E]">
           Our Featured <span className="font-bold">Courses</span>
         </h2>
 
-        <p className="mt-[12px] text-[16px] md:text-[16px] font-medium text-[#464646]">
-          Explore our most popular, career-boosting courses <br />
-          handpicked by industry experts.
+        <p className="mt-[10px] text-[13px] sm:text-[14px] md:text-[16px] text-[#464646]">
+          Explore our most popular, career-boosting courses
         </p>
       </div>
 
-      <div className="mt-[40px] md:mt-[50px] flex justify-center">
-
+      {/* SLIDER */}
+      <div className="mt-[30px] md:mt-[50px] flex justify-center">
         <div className="relative w-full max-w-[1200px]">
 
+          {/* LEFT */}
           <button
             onClick={() => scroll("left")}
-            className="
-              absolute left-[-25px] top-1/2 -translate-y-1/2 z-20
-              w-[50px] h-[50px]
-              bg-[#00B8C6] text-white
-              rounded-full
-              flex items-center justify-center
-              shadow-md
-            "
+            className="hidden sm:flex absolute left-0 md:left-[-25px] top-1/2 -translate-y-1/2 z-20 w-[40px] h-[40px] md:w-[50px] md:h-[50px] bg-[#00B8C6] text-white rounded-full items-center justify-center"
           >
-            <IoIosArrowBack size={22} />
+            <IoIosArrowBack size={20} />
           </button>
 
+          {/* RIGHT */}
           <button
             onClick={() => scroll("right")}
-            className="
-              absolute right-[-25px] top-1/2 -translate-y-1/2 z-20
-              w-[50px] h-[50px]
-              bg-[#00B8C6] text-white
-              rounded-full
-              flex items-center justify-center
-              shadow-md
-            "
+            className="hidden sm:flex absolute right-0 md:right-[-25px] top-1/2 -translate-y-1/2 z-20 w-[40px] h-[40px] md:w-[50px] md:h-[50px] bg-[#00B8C6] text-white rounded-full items-center justify-center"
           >
-            <IoIosArrowForward size={22} />
+            <IoIosArrowForward size={20} />
           </button>
 
           <div className="overflow-hidden">
             <div
               ref={containerRef}
               className="
-                flex gap-[16px] md:gap-[24px]
-                overflow-x-auto
+                flex gap-[12px] sm:gap-[16px] md:gap-[24px]
+    overflow-x-auto overscroll-x-contain
                 snap-x snap-mandatory
                 scrollbar-hide
-                px-4 md:px-[calc((1200px-384px)/2)]
+
+                pl-4 pr-4
+                md:pl-[calc((1200px-384px)/2)]
+                md:pr-[calc((1200px-384px)/2)]
+
+                scroll-pl-4 scroll-pr-4
+                md:scroll-pl-[calc((1200px-384px)/2)]
+                md:scroll-pr-[calc((1200px-384px)/2)]
               "
             >
               {[...courses, ...courses].map((course, i) => (
@@ -122,10 +116,10 @@ export default function CoursesSection() {
                   key={i}
                   className={`
                     snap-center shrink-0
-                    transition-all duration-300 ease-out
+                    transition-all duration-300
                     ${i === active
                       ? "scale-100"
-                      : "scale-[0.9] opacity-80"}
+                      : "scale-[0.92] opacity-80"}
                   `}
                 >
                   <CourseCard {...course} />
