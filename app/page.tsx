@@ -7,6 +7,7 @@ import Testimonials from "./components/Testimonials";
 import VideoTestimonials from "./components/VideoTestimonials";
 import BlogSection from "./components/Blogs";
 import Footer from "./components/Footer";
+
 export default function Home() {
   return (
   <main className="min-h-screen flex flex-col">

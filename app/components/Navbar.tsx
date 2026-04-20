@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import navData from "@/app/data/navbar.json";
 import type { NavbarData } from "@/app/types/navbar";
-
+import { usePathname } from "next/navigation";
 const data = navData as NavbarData;
 
 export default function Navbar() {
