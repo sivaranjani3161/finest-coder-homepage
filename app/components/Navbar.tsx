@@ -9,7 +9,7 @@ const data = navData as NavbarData;
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-
+const pathname = usePathname();
   return (
     <header className="w-full bg-white mb-[8px] md:mb-[10px] mt-[8px] md:mt-[10px] sticky top-0 z-50">
 
@@ -40,8 +40,7 @@ export default function Navbar() {
               className={`
                 text-[15px] lg:text-[16px] font-medium transition
                 ${
-                  link.active
-                    ? "text-[#00B8C6] border border-[#00B8C6] px-[12px] lg:px-[14px] py-[4px] lg:py-[5px] rounded-full"
+pathname === link.href                    ? "text-[#00B8C6] border border-[#00B8C6] px-[12px] lg:px-[14px] py-[4px] lg:py-[5px] rounded-full"
                     : "text-[#2E2E2E] hover:text-[#00B8C6]"
                 }
               `}
@@ -90,8 +89,7 @@ export default function Navbar() {
               className={`
                 block text-[15px] font-medium py-[6px]
                 ${
-                  link.active
-                    ? "text-[#00B8C6]"
+pathname === link.href                    ? "text-[#00B8C6]"
                     : "text-[#2E2E2E]"
                 }
               `}

@@ -13,7 +13,6 @@ export default function Home() {
   <main className="min-h-screen flex flex-col">
 
   <div className="flex-1">
-    <Navbar />
     <Hero />
     <CoursesSection />
     <ApproachSection />
@@ -23,7 +22,6 @@ export default function Home() {
     <BlogSection />
   </div>
 
-  <Footer />
 
 </main>
   );

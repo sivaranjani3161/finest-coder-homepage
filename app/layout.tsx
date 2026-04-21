@@ -1,5 +1,7 @@
 import "./globals.css";
 import { Urbanist } from "next/font/google";
+import Navbar from "./components/Navbar";   // ✅ add
+import Footer from "./components/Footer";   // optional
 
 const urbanist = Urbanist({
   subsets: ["latin"],
@@ -13,8 +15,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-<body className={`${urbanist.variable} font-sans bg-[#FDFDFD] text-[#2E2E2E]`}>
-          {children}
+      <body className={`${urbanist.variable} font-sans bg-[#FDFDFD] text-[#2E2E2E]`}>
+        
+        <Navbar />     {/* ✅ GLOBAL */}
+        {children}     {/* your existing pages (UNCHANGED) */}
+        <Footer />     {/* optional */}
+
       </body>
     </html>
   );
